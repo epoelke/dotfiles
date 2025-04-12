@@ -1,6 +1,7 @@
 require("emp.set")
 require("emp.keymap")
 require("emp.lazy_init")
+require("emp.floaterminal")
 require("emp.nftables")
 
 vim.g.loaded_netrw = 1
@@ -36,3 +37,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end
 })
 
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    -- Link TermNormal and related groups to Normal
+    vim.api.nvim_set_hl(0, "TermNormal", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "TermNormalNC", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+  end
+})
