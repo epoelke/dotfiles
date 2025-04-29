@@ -40,24 +40,24 @@ local function create_floating_window(opts)
 end
 
 local toggle_terminal = function()
-    if not vim.api.nvim_win_is_valid(state.floating.win) then
-        state.floating = create_floating_window { buf = state.floating.buf }
+  if not vim.api.nvim_win_is_valid(state.floating.win) then
+    state.floating = create_floating_window { buf = state.floating.buf }
 
-        if vim.bo[state.floating.buf].buftype ~= "terminal" then
-            vim.cmd.terminal()
-            vim.defer_fn(function()
-                vim.cmd("startinsert")
-            end, 20)
-        else
-            vim.defer_fn(function()
-                vim.api.nvim_set_current_win(state.floating.win)
-                vim.cmd("startinsert")
-            end, 20)
-        end
+    if vim.bo[state.floating.buf].buftype ~= "terminal" then
+      vim.cmd.terminal()
+      vim.defer_fn(function()
+        vim.cmd("startinsert")
+      end, 20)
     else
-        vim.api.nvim_win_hide(state.floating.win)
+      vim.defer_fn(function()
+        vim.api.nvim_set_current_win(state.floating.win)
+        vim.cmd("startinsert")
+      end, 20)
     end
+  else
+    vim.api.nvim_win_hide(state.floating.win)
+  end
 end
 
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
-vim.keymap.set({"n", "t"}, "<C-t>", toggle_terminal)
+vim.keymap.set({ "n", "t" }, "PPP", toggle_terminal)

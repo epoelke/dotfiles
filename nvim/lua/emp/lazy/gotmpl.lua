@@ -1,4 +1,4 @@
 return {
-    "ngynkvn/gotmpl.nvim",
-    opts = {}
+  "ngynkvn/gotmpl.nvim",
+  opts = {}
 }

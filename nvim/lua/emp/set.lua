@@ -17,7 +17,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = true
--- vim.opt.incsearch = true
+--vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
@@ -32,3 +32,5 @@ vim.opt.colorcolumn = "0"
 vim.o.foldenable = true
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 99
+
+vim.api.nvim_set_hl(0, "Visual", { bg = "#fff3b0" })
